@@ -9,9 +9,9 @@ class JobController extends Controller
 {
     public function index()
     {
-        $jobs = Job::all();
+        $jobs = Job::all()->sortByDesc('created_at')->toArray();
         return inertia("Jobs/Index", [
-            'jobs' => $jobs
+            'jobs' => array_values($jobs)
         ]);
     }
 
@@ -27,6 +27,8 @@ class JobController extends Controller
             'description' => ['required'],
         ]);
 
-        return Job::create($data);
+        Job::create($data);
+
+        return redirect('/jobs');
     }
 }

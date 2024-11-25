@@ -7,6 +7,6 @@ Route::get('/', function () {
     return inertia('Welcome');
 });
 
-Route::get('/jobs', [JobController::class, 'create']);
+Route::get('/jobs/create', [JobController::class, 'create']);
 Route::get('/jobs', [JobController::class, 'index']);
 Route::post('/jobs', [JobController::class, 'store']);
